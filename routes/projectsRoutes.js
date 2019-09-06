@@ -9,7 +9,7 @@ router.get('/:id', (req, res) => {
     projectsDb.get(id)
         .then( project => {
             if(project){
-                res.status(400).json(project)
+                res.status(200).json(project)
             }else{
                 res.status(400).json({message:"We couldn't find a post that matches our records"})
             }})
@@ -58,11 +58,11 @@ router.delete('/:id', (req, res) => {
         .catch( err => res.status(500).json({error: "We couldn't deleted the project at this time"}))
 })
 
-router.get('/:id', (req, res) => {
+router.get('/:id/actions', (req, res) => {
     const { id } = req.params
     projectsDb.getProjectActions(id)
         .then( projects => {
-            if(!projects){
+            if(projects.length <= 0){
                 res.status(404).json({message: "We couldn't find a project that matches our records"})
             }else{
                 res.status(200).json(projects)
