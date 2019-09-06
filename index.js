@@ -12,3 +12,10 @@ I need this code, just don't know where, perhaps should make some middleware, do
 
 Go code!
 */
+require('dotenv').config()
+
+const server = require('./server')
+
+const defaults = require('./defaults.js')
+
+server.listen(defaults.port, () => console.log(`**** Server is listening on port ${defaults.port} ****`))
